@@ -31,7 +31,6 @@ function resize(canvas, ctx) {
 }
 
 function draw(canvas, ctx) {
-  ctx.font = "26px Satoshi Bold";
   ctx.fillStyle = `rgba(${bgColors[current][0]}, ${bgColors[current][1]}, ${bgColors[current][2]}, 1)`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -73,6 +72,7 @@ function lines(canvas, ctx) {
 function text(canvas, ctx) {
   let line_height = 32;
   let margin = canvas.height / 20;
+  ctx.font = "45px Satoshi Bold";
 
   let dev = ["🚧"]
   ctx.textAlign = "end";
@@ -85,6 +85,7 @@ function text(canvas, ctx) {
     );
   }
 
+  ctx.font = "25px Satoshi Bold";
   let nei = ["NÚCLEO", "ESTUDANTES", "INFORMÁTICA"];
   ctx.textAlign = "start";
   ctx.textBaseline = "bottom";

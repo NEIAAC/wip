@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Satoshi Bold";
-  src: url(../public/fonts/satoshi-bold.otf);
+  src: url(./assets/fonts/satoshi-bold.otf);
 }
 
 html,
