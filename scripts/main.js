@@ -26,7 +26,7 @@ window.addEventListener("load", main, false);
 
 function drawCanvas(canvas, ctx) {
   const { currentColorIndex, bgColors } = state;
-  ctx.font = "24px monospace";
+  ctx.font = "25px monospace";
   ctx.fillStyle = `rgba(${bgColors[currentColorIndex].join(", ")}, 1)`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -43,7 +43,7 @@ function resizeCanvas(canvas, ctx) {
 function drawLines(canvas, ctx) {
   const { currentColorIndex, txtColors } = state;
   const margin = canvas.height / 20;
-  const stroke = 2;
+  const stroke = (canvas.height * canvas.width) / 400000;
 
   ctx.fillStyle = `rgba(${txtColors[currentColorIndex].join(", ")}, 1)`;
 
@@ -90,6 +90,7 @@ async function fadeCanvas(canvas, ctx) {
       out = true;
     }
     canvas.style.opacity = op;
+    canvas.style.filter = "alpha(opacity=" + op * 100 + ")";
     op += (out ? -1 : 1) * 0.01;
   }, 50);
 }
@@ -109,17 +110,19 @@ function main() {
     drawCanvas(canvas, ctx);
     resizeCanvas(canvas, ctx);
     fadeCanvas(canvas, ctx);
+
+    document.body.style.backgroundColor = "white";
+
+    window.addEventListener("resize", () => resizeCanvas(canvas, ctx), false);
+
+    canvas.addEventListener("click", () => {
+      state.currentColorIndex = (state.currentColorIndex + 1) % state.bgColors.length;
+      drawCanvas(canvas, ctx);
+    }, false);
+    canvas.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        canvas.click();
+      }
+    }, false);
   });
-
-  window.addEventListener("resize", () => resizeCanvas(canvas, ctx), false);
-
-  canvas.addEventListener("click", () => {
-    state.currentColorIndex = (state.currentColorIndex + 1) % state.bgColors.length;
-    drawCanvas(canvas, ctx);
-  }, false);
-  canvas.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      canvas.click();
-    }
-  }, false);
 }
