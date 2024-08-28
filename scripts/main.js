@@ -1,150 +1,118 @@
 "use strict";
 
-var current = 0;
-var bgColors = [
-  [0, 100, 72],
-  [123, 100, 134],
-  [209, 92, 41],
-  [174, 197, 223],
-  [201, 214, 94],
-  [76, 108, 175],
-  [213, 220, 213],
-];
-var txtColors = [
-  [198, 187, 214],
-  [175, 186, 64],
-  [213, 220, 213],
-  [209, 92, 41],
-  [115, 77, 78],
-  [218, 172, 203],
-  [6, 101, 74],
-];
+const state = {
+  currentColorIndex: 0,
+  bgColors: [
+    [0, 100, 72],
+    [123, 100, 134],
+    [209, 92, 41],
+    [174, 197, 223],
+    [201, 214, 94],
+    [76, 108, 175],
+    [213, 220, 213],
+  ],
+  txtColors: [
+    [198, 187, 214],
+    [175, 186, 64],
+    [213, 220, 213],
+    [209, 92, 41],
+    [115, 77, 78],
+    [218, 172, 203],
+    [6, 101, 74],
+  ],
+};
 
-(function () {
-  window.addEventListener("load", main, false);
-})();
+window.addEventListener("load", main, false);
 
-function resize(canvas, ctx) {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  draw(canvas, ctx);
-}
-
-function draw(canvas, ctx) {
-  ctx.fillStyle = `rgba(${bgColors[current][0]}, ${bgColors[current][1]}, ${bgColors[current][2]}, 1)`;
+function drawCanvas(canvas, ctx) {
+  const { currentColorIndex, bgColors } = state;
+  ctx.fillStyle = `rgba(${bgColors[currentColorIndex].join(", ")}, 1)`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  lines(canvas, ctx);
-  text(canvas, ctx);
+  drawLines(canvas, ctx);
+  drawText(canvas, ctx);
 }
 
-function lines(canvas, ctx) {
-  let margin = canvas.height / 20;
-  let stroke = (canvas.height * canvas.width) / 400000;
+function resizeCanvas(canvas, ctx) {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  drawCanvas(canvas, ctx);
+}
 
-  ctx.fillStyle = `rgba(${txtColors[current][0]}, ${txtColors[current][1]}, ${txtColors[current][2]}, 1)`;
+function drawLines(canvas, ctx) {
+  const { currentColorIndex, txtColors } = state;
+  const margin = canvas.height / 20;
+  const stroke = (canvas.height * canvas.width) / 400000;
+
+  ctx.fillStyle = `rgba(${txtColors[currentColorIndex].join(", ")}, 1)`;
 
   ctx.fillRect(margin, margin, canvas.width - margin * 2, stroke);
-  ctx.fillRect(
-    margin,
-    canvas.height - margin,
-    canvas.width - margin * 2,
-    stroke
-  );
+  ctx.fillRect(margin, canvas.height - margin, canvas.width - margin * 2, stroke);
 
   ctx.fillRect(margin, margin + stroke - 0.5, stroke, margin * 1.5);
   ctx.fillRect(margin, canvas.height - margin + 0.5, stroke, -margin * 11);
 
-  ctx.fillRect(
-    canvas.width - margin - stroke,
-    margin + stroke - 0.5,
-    stroke,
-    margin * 11
-  );
-  ctx.fillRect(
-    canvas.width - margin - stroke,
-    canvas.height - margin + 0.5,
-    stroke,
-    -margin * 3
-  );
+  ctx.fillRect(canvas.width - margin - stroke, margin + stroke - 0.5, stroke, margin * 11);
+  ctx.fillRect(canvas.width - margin - stroke, canvas.height - margin + 0.5, stroke, -margin * 3);
 }
 
-function text(canvas, ctx) {
-  let line_height = 32;
-  let margin = canvas.height / 20;
-  ctx.font = "45px Satoshi Bold";
+function drawText(canvas, ctx) {
+  const margin = canvas.height / 20;
 
-  let dev = ["🚧"]
-  ctx.textAlign = "end";
-  ctx.textBaseline = "top";
-  for (let i = 0; i < dev.length; i++) {
-    ctx.fillText(
-      dev[i],
-      canvas.width - 1.5 * margin,
-      margin + margin / 2 + i * line_height
-    );
-  }
-
-  ctx.font = "25px Satoshi Bold";
-  let nei = ["NÚCLEO", "ESTUDANTES", "INFORMÁTICA"];
+  ctx.font = "25px Satoshi Bold, sans-serif";
   ctx.textAlign = "start";
   ctx.textBaseline = "bottom";
-  for (let i = 0; i < nei.length; i++)
-    ctx.fillText(
-      nei[nei.length - i - 1],
-      margin + margin / 2,
-      canvas.height - 1.5 * margin - i * line_height
-    );
-}
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  const year = new Date().getFullYear();
+  const text = `© ${year} NEI/AAC`;
+
+  ctx.fillText(text, margin + margin / 2, canvas.height - (1.5 * margin));
 }
 
-async function fade(canvas, ctx) {
-  var op = 1;
-  var out = true;
-  await new Promise((r) => setTimeout(r, 2000));
+async function fadeCanvas(canvas, ctx) {
+  let op = 1;
+  let out = true;
+  await sleep(2000);
+
   setInterval(async () => {
     if (op < 0.2) {
-      current = (current + 1) % bgColors.length;
-      draw(canvas, ctx);
+      state.currentColorIndex = (state.currentColorIndex + 1) % state.bgColors.length;
+      drawCanvas(canvas, ctx);
       out = false;
     } else if (op > 1) {
-      await new Promise((r) => setTimeout(r, 2000));
+      await sleep(2000);
       out = true;
     }
     canvas.style.opacity = op;
-    canvas.style.filter = "alpha(opacity=" + op * 100 + ")";
     op += (out ? -1 : 1) * 0.01;
   }, 50);
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function main() {
-  let canvas = document.getElementById("canvas");
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
-  canvas.addEventListener(
-    "keydown",
-    function (e) {
-      if (e.key == "Enter" || e.key == " ") {
-        canvas.click();
-      }
-    },
-    false
-  );
+  const font = new FontFace("Satoshi Bold", "url(../assets/fonts/satoshi-bold.otf)");
 
-  let ctx = canvas.getContext("2d");
+  font.load().then((loadedFont) => {
+    document.fonts.add(loadedFont);
+    drawCanvas(canvas, ctx);
+    resizeCanvas(canvas, ctx);
+    fadeCanvas(canvas, ctx);
+  });
 
-  resize(canvas, ctx);
+  window.addEventListener("resize", () => resizeCanvas(canvas, ctx), false);
 
-  fade(canvas, ctx);
-
-  window.addEventListener("resize", () => resize(canvas, ctx), false);
-  canvas.addEventListener(
-    "click",
-    () => {
-      current = (current + 1) % bgColors.length;
-      draw(canvas, ctx);
-    },
-    false
-  );
+  canvas.addEventListener("click", () => {
+    state.currentColorIndex = (state.currentColorIndex + 1) % state.bgColors.length;
+    drawCanvas(canvas, ctx);
+  }, false);
+  canvas.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      canvas.click();
+    }
+  }, false);
 }

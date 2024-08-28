@@ -1,17 +1,15 @@
-@font-face {
-  font-family: "Satoshi Bold";
-  src: url(../assets/fonts/satoshi-bold.otf);
-}
-
-html,
 body {
-  height: 100vw;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   border: 0;
+  overflow: hidden;
   overscroll-behavior-y: none;
   touch-action: manipulation;
-  overflow: hidden;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }
 
 canvas {
@@ -21,12 +19,4 @@ canvas {
   left: 0;
   top: 0;
   cursor: pointer;
-}
-
-#preload-font {
-  font-family: "Satoshi Bold";
-  opacity: 0;
-  height: 0;
-  width: 0;
-  display: inline-block;
 }
