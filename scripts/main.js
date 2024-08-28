@@ -59,11 +59,13 @@ function drawLines(canvas, ctx) {
 function drawText(canvas, ctx) {
   const margin = canvas.height / 20;
 
-  ctx.font = "25px Satoshi Bold, sans-serif";
-  ctx.textAlign = "start";
-  ctx.textBaseline = "bottom";
+
   const year = new Date().getFullYear();
   const text = `© ${year} NEI/AAC`;
+  const size = window.innerWidth < 500 ? 20 : 25;
+  ctx.font = `${size}px Satoshi Bold`;
+  ctx.textAlign = "start";
+  ctx.textBaseline = "bottom";
 
   ctx.fillText(text, margin + margin / 2, canvas.height - (1.5 * margin));
 }
@@ -95,7 +97,7 @@ function main() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
-  const font = new FontFace("Satoshi Bold", "url(../assets/fonts/satoshi-bold.otf)");
+  const font = new FontFace("Satoshi Bold", "url(./assets/fonts/satoshi-bold.otf)");
 
   font.load().then((loadedFont) => {
     document.fonts.add(loadedFont);
