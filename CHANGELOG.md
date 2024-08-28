@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/NEIAAC/landing-page/compare/v1.2.0...v1.2.1) (2024-08-28)
+
+
+### Bug Fixes
+
+* prevent accidental mobile scroll ([d37a200](https://github.com/NEIAAC/landing-page/commit/d37a2007ef8d8d007e222bf514b2e03ea77b69fd))
+
 ## [1.2.0](https://github.com/NEIAAC/landing-page/compare/v1.1.0...v1.2.0) (2024-08-28)
 
 
