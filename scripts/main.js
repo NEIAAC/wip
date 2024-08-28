@@ -59,7 +59,6 @@ function drawLines(canvas, ctx) {
 function drawText(canvas, ctx) {
   const margin = canvas.height / 20;
 
-
   const year = new Date().getFullYear();
   const text = `© ${year} NEI/AAC`;
   const size = window.innerWidth < 500 ? 20 : 25;
