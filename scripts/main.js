@@ -26,7 +26,8 @@ window.addEventListener("load", main, false);
 
 function drawCanvas(canvas, ctx) {
   const { currentColorIndex, bgColors } = state;
-  ctx.font = "25px monospace";
+  const font = canvas.width < 500 ? 20 : 25;
+  ctx.font = `${font}px Satoshi Bold`;
   ctx.fillStyle = `rgba(${bgColors[currentColorIndex].join(", ")}, 1)`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
