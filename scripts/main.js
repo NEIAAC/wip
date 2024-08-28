@@ -26,6 +26,7 @@ window.addEventListener("load", main, false);
 
 function drawCanvas(canvas, ctx) {
   const { currentColorIndex, bgColors } = state;
+  ctx.font = "24px monospace";
   ctx.fillStyle = `rgba(${bgColors[currentColorIndex].join(", ")}, 1)`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -42,7 +43,7 @@ function resizeCanvas(canvas, ctx) {
 function drawLines(canvas, ctx) {
   const { currentColorIndex, txtColors } = state;
   const margin = canvas.height / 20;
-  const stroke = (canvas.height * canvas.width) / 400000;
+  const stroke = 2;
 
   ctx.fillStyle = `rgba(${txtColors[currentColorIndex].join(", ")}, 1)`;
 
@@ -60,13 +61,18 @@ function drawText(canvas, ctx) {
   const margin = canvas.height / 20;
 
   const year = new Date().getFullYear();
-  const text = `© ${year} NEI/AAC`;
-  const size = window.innerWidth < 500 ? 20 : 25;
-  ctx.font = `${size}px Satoshi Bold`;
+  const first = `${year}`;
+  const second = `NEI/AAC`;
+
   ctx.textAlign = "start";
   ctx.textBaseline = "bottom";
 
-  ctx.fillText(text, margin + margin / 2, canvas.height - (1.5 * margin));
+  ctx.fillText(first, margin * 1.5, canvas.height - margin * 1.5);
+
+  ctx.textAlign = "end";
+  ctx.textBaseline = "top";
+
+  ctx.fillText(second, canvas.width - margin * 1.5, margin * 1.5);
 }
 
 async function fadeCanvas(canvas, ctx) {
@@ -98,8 +104,8 @@ function main() {
 
   const font = new FontFace("Satoshi Bold", "url(./assets/fonts/satoshi-bold.otf)");
 
-  font.load().then((loadedFont) => {
-    document.fonts.add(loadedFont);
+  font.load().then((loaded) => {
+    document.fonts.add(loaded);
     drawCanvas(canvas, ctx);
     resizeCanvas(canvas, ctx);
     fadeCanvas(canvas, ctx);
