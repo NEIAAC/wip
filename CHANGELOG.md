@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.2.0](https://github.com/NEIAAC/landing-page/compare/v1.1.0...v1.2.0) (2024-08-28)
+
+
+### Features
+
+* switch to smaller font on mobile ([6691e5f](https://github.com/NEIAAC/landing-page/commit/6691e5ff692167a4fa0fb35e5ebddc31d40c5f29))
+
+
+### Bug Fixes
+
+* add monospace rule ([0acd8c1](https://github.com/NEIAAC/landing-page/commit/0acd8c1714198dccb171ddd8dd00a1d1763b77cd))
+* remove bottom white line in firefox ([30cb5bd](https://github.com/NEIAAC/landing-page/commit/30cb5bd2551e3481711763c33e7185b1c11a7fe0))
+* revert elastic overscroll ([0d86d57](https://github.com/NEIAAC/landing-page/commit/0d86d57cabf831154c66e26b8ce1f0d0cbec57fd))
+* revert opacity background color ([0cc88b4](https://github.com/NEIAAC/landing-page/commit/0cc88b4a25e634b038651ab3094521030b8bf343))
+* revert size units ([2ed6d8f](https://github.com/NEIAAC/landing-page/commit/2ed6d8fd8e745b2ba384192a59b09db4935ed7e0))
+
 ## [1.1.0](https://github.com/NEIAAC/landing-page/compare/v1.0.0...v1.1.0) (2024-08-28)
 
 
