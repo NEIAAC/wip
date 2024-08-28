@@ -35,15 +35,15 @@ function drawCanvas(canvas, ctx) {
 }
 
 function resizeCanvas(canvas, ctx) {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth + 1;
+  canvas.height = window.innerHeight + 1;
   drawCanvas(canvas, ctx);
 }
 
 function drawLines(canvas, ctx) {
   const { currentColorIndex, txtColors } = state;
   const margin = canvas.height / 20;
-  const stroke = (canvas.height * canvas.width) / 400000;
+  const stroke = 3;
 
   ctx.fillStyle = `rgba(${txtColors[currentColorIndex].join(", ")}, 1)`;
 
@@ -107,7 +107,6 @@ function main() {
 
   font.load().then((loaded) => {
     document.fonts.add(loaded);
-    drawCanvas(canvas, ctx);
     resizeCanvas(canvas, ctx);
     fadeCanvas(canvas, ctx);
 
