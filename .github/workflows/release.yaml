@@ -9,10 +9,17 @@ permissions:
   pull-requests: write
 
 jobs:
-  simple:
+  metadata:
     runs-on: ubuntu-latest
+    outputs:
+      release-created: ${{ steps.metadata.outputs.release_created }}
     steps:
-      - uses: googleapis/release-please-action@v4
+      - name: Update project metadata and release pull request
+        id: metadata
+        uses: googleapis/release-please-action@v4
         with:
-          # Updates CHANGELOG.md and creates a tagged release in github
           release-type: simple
+  deploy:
+    needs: [metadata]
+    if: ${{ needs.metadata.outputs.release-created}}
+    uses: ./.github/workflows/deploy.yaml
