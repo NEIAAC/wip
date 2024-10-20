@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/NEIAAC/landing-page/compare/v1.2.1...v1.2.2) (2024-10-20)
+
+
+### Bug Fixes
+
+* prevent command injection ([a893dcf](https://github.com/NEIAAC/landing-page/commit/a893dcffc1e893407e35a8d8512d0c5dce5a0109))
+
 ## [1.2.1](https://github.com/NEIAAC/landing-page/compare/v1.2.0...v1.2.1) (2024-08-28)
 
 
