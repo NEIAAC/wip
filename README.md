@@ -2,19 +2,15 @@
 
 Vanilla HTML + CSS + JS page to mark websites under development.
 
-## Requirements 📋
+## Development 🛠️
 
-- Minimally modern browser!
+- ### Requirements 📋
 
-## Development Installation 🛠️
+  - Minimally modern browser!
 
-- Clone the repository:
+- Clone the repository and open a terminal **inside** it.
 
-  ```shell
-  git clone https://github.com/NEIAAC/landing-page.git
-  ```
-
-- Open `index.html` with you preferred browser.
+- Open `index.html` with your browser.
 
 ## Deployment 🚀
 
