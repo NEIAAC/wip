@@ -8,7 +8,7 @@ Vanilla HTML + CSS + JS page to mark websites under development.
 
   - Minimally modern browser!
 
-- Clone the repository and open a terminal **inside** it.
+- Clone the repository.
 
 - Open `index.html` with your browser.
 
