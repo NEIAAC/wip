@@ -104,7 +104,7 @@ function main() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
-  const font = new FontFace("Satoshi Bold", "url(./satoshi-bold.otf)");
+  const font = new FontFace("Satoshi Bold", "url(satoshi-bold.otf)");
 
   font.load().then((loaded) => {
     document.fonts.add(loaded);
