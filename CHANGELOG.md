@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/NEIAAC/wip/compare/v1.2.4...v1.2.5) (2025-01-27)
+
+
+### Bug Fixes
+
+* update font path ([e6aae02](https://github.com/NEIAAC/wip/commit/e6aae024331a4fed319691b3f39756049e0ab119))
+
 ## [1.2.4](https://github.com/NEIAAC/wip/compare/v1.2.3...v1.2.4) (2025-01-27)
 
 
