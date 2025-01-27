@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4](https://github.com/NEIAAC/wip/compare/v1.2.3...v1.2.4) (2025-01-27)
+
+
+### Bug Fixes
+
+* move folders to dist root ([6cecbc6](https://github.com/NEIAAC/wip/commit/6cecbc69fbe441dbd190a4172ab10631b65d89e7))
+
 ## [1.2.3](https://github.com/NEIAAC/wip/compare/v1.2.2...v1.2.3) (2025-01-27)
 
 
