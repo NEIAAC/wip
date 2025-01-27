@@ -1,32 +1,16 @@
 # IDE
 .idea/
 .vscode/
-
-# Dependencies
-node_modules/
-
-# Testing
-coverage/
-
-# Build
-build/
-out/
-dist/
-web-ext/artifacts/
-.next/
-tsconfig.tsbuildinfo
+xcuserdata/
 
 # Miscellaneous
 .DS_Store
-*.pem
-next-env.d.ts
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# Dependencies
+node_modules
 
 # Environment
-.env*
+*.env*
+*.pem*
+|.pem.example
 !.env.example
