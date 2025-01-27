@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/NEIAAC/wip/compare/v1.2.2...v1.2.3) (2025-01-27)
+
+
+### Bug Fixes
+
+* restructure files ([7212260](https://github.com/NEIAAC/wip/commit/72122604069502875ac0309d1136375ed4a48f73))
+
 ## [1.2.2](https://github.com/NEIAAC/landing-page/compare/v1.2.1...v1.2.2) (2024-10-20)
 
 
