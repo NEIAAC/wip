@@ -16,7 +16,7 @@ concurrency:
 jobs:
   page:
     environment:
-      name: github-pages
+      name: Showcase
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
